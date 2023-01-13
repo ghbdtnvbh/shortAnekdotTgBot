@@ -16,11 +16,15 @@ func randomAnekdot() string {
 	block := site.Find("section", "itemprop", "description").FindAll("p")
 
 	var result string
+
 	for _, v := range block {
 		p := regexp.MustCompile(`<*.p>`)
 		br := regexp.MustCompile(`<br/>`)
-		preprocessing := p.ReplaceAllString(v.HTML(), "")
-		result = br.ReplaceAllString(preprocessing, "\n")
+		qute := regexp.MustCompile(`&#\d+?;`)
+		replaceTagP := p.ReplaceAllString(v.HTML(), "")
+		replaceTagBr := br.ReplaceAllString(replaceTagP, "\n")
+		result = qute.ReplaceAllString(replaceTagBr, `"`)
+
 	}
 	return result
 }

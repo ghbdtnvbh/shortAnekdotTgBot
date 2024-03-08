@@ -9,6 +9,8 @@ import (
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
 
+var TOKEN = "2000..."
+
 func randomAnekdot() string {
 	url := "https://baneks.site/random"
 	resp, _ := soup.Get(url)
@@ -42,7 +44,7 @@ func shortAnekdot() string {
 }
 
 func main() {
-	bot, err := tgbotapi.NewBotAPI("2002027839:AAFqwfk3z1-0RmCTtkvAIdE_1MEHHvkTgcs")
+	bot, err := tgbotapi.NewBotAPI(TOKEN)
 	if err != nil {
 		log.Panic(err)
 	}
